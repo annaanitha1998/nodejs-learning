@@ -1,18 +1,14 @@
-const asyncHandler = require('express-async-handler')
-const express = require('express')
-
+const express = require("express");
+const router = express.Router();
 const {
-    getContacts,
-    addContacts,
-    getContactById,
-    updateContact, 
-    deleteContact
-} = require('../controller/contact')
+  getContacts,
+  getContact,
+  createContact,
+  updateContact,
+  deleteContact,
+} = require("../controller/contact");
 
-const routes = express.Router()
+router.route("/").get(getContacts).post(createContact);
+router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
-routes.route("/").get(asyncHandler(getContacts)).post(asyncHandler(addContacts))
-
-routes.route("/:id").get(asyncHandler(getContactById)).put(asyncHandler(updateContact)).delete(asyncHandler(deleteContact))
-
-module.exports = routes
+module.exports = router;

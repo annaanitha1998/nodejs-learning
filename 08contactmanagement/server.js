@@ -1,14 +1,17 @@
-const express = require('express')
-const errorHandler = require('./middleware/errorhandler')
-const dotenv = require('dotenv').config()
+const express = require("express");
+const connectDb = require("./config/dbConnection");
+const errorHandler = require("./middleware/errorhandler");
+const dotenv = require("dotenv").config();
 
-const app = express()
+connectDb();
+const app = express();
 
-const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
-app.use(express.json())
-app.use('/api/contacts', require('./routes/contact'))
+app.use(express.json());
+app.use("/api/contacts", require("./routes/contact"));
+app.use(errorHandler);
 
-app.use(errorHandler)
-
-app.listen(PORT, () => console.log(`Server listening to port ${PORT}`))
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

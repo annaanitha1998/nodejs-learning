@@ -1,6 +1,0 @@
-exports.constants = {
-    VALIDATION_ERROR: 400,
-    NOTFOUND_ERROR: 404,
-    UNAUTHORISED_ERROR: 401,
-    SERVER_SIDE_ERROR: 500
-}
